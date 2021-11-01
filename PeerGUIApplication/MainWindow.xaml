@@ -1,0 +1,35 @@
+﻿<Window x:Class="PeerGUIApplication.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PeerGUIApplication"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="530">
+
+    <Window.DataContext>
+        <local:MainVM></local:MainVM>
+    </Window.DataContext>
+    <Grid Margin="0,0,10,0">
+        <TextBlock HorizontalAlignment="Left" Margin="50,50,0,0" Text="Søg Efter Fil" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Margin="50,75,0,0" Text="{Binding Filename, Mode=TwoWay}" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <ListView Margin="50,120,200,20" SelectedItem="{Binding SelectedEndPoint, Mode=TwoWay}" ItemsSource="{Binding FileEPs}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="IpAddress" Margin="10,0,0,0"></TextBlock>
+                        <TextBlock Text="{Binding IpAddress}" Margin="10,0,0,0"></TextBlock>
+                        <TextBlock Text="Port" Margin="10,0,0,0"></TextBlock>
+                        <TextBlock Text="{Binding Port}" Margin="10,0,0,0"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Content="Søg" HorizontalAlignment="Left" Margin="200,75,0,0" VerticalAlignment="Top" Width="50" Command="{Binding SearchCommand}"/>
+        <Button Content="Download" HorizontalAlignment="Left" Margin="350,200,0,0" VerticalAlignment="Top" Width="100" Command="{Binding DownloadCommand}" IsEnabled="{Binding EnableDownload}"/>
+        <TextBlock HorizontalAlignment="Left" Margin="350,110,0,0" Text="{Binding SelectedEndPoint}" Width="100" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="350,250,0,0" Text="{Binding Message}" Width="100" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+
+</Grid>
+</Window>
